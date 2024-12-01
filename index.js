@@ -1,6 +1,7 @@
 import { json } from "express";
 import express from "express";
-import { sequelize } from "./src/config/database.js";
+import { sequelize } from "./src/config/database.js"; // Asegúrate de que la ruta sea correcta
+import joyaRoutes from "./src/routes/joya.js"; // Importa las rutas de las joyas
 
 const app = express();
 app.use(json());
@@ -17,7 +18,9 @@ async function verifyAndSyncConexion() {
     }
 }
 
+app.use('/admin/productos', joyaRoutes);
+
 app.listen(PORT, () => {
     console.log(`Servidor conectado a puerto ${PORT}`);
     verifyAndSyncConexion();
-})
+});
