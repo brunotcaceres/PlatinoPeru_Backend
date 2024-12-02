@@ -30,4 +30,31 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.post('/login', async (req, res) => {
+    try {
+      const { username, password } = req.body;
+  
+      // Buscar al usuario por nombre de usuario o email
+      const user = await User.findOne({
+        where: { 
+          [Op.or]: [{ email: username }, { nombreUsuario: username }]
+        }
+      });
+  
+      if (!user) {
+        return res.status(400).json({ error: 'Usuario no encontrado.' });
+      }
+  
+      // Verificar la contraseña (para simplicidad, sin encriptar)
+      if (user.password !== password) {
+        return res.status(400).json({ error: 'Contraseña incorrecta.' });
+      }
+  
+      res.status(200).json({ message: 'Inicio de sesión exitoso', user });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
+
 export default router;
