@@ -34,7 +34,6 @@ router.post('/login', async (req, res) => {
     try {
       const { username, password } = req.body;
   
-      // Buscar al usuario por nombre de usuario o email
       const user = await User.findOne({
         where: { 
           [Op.or]: [{ email: username }, { nombreUsuario: username }]
@@ -45,7 +44,6 @@ router.post('/login', async (req, res) => {
         return res.status(400).json({ error: 'Usuario no encontrado.' });
       }
   
-      // Verificar la contraseña (para simplicidad, sin encriptar)
       if (user.password !== password) {
         return res.status(400).json({ error: 'Contraseña incorrecta.' });
       }
