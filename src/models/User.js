@@ -21,7 +21,7 @@ export const User = sequelize.define(
                 isEmail: true
             }
         },
-        contraseña: {
+        password: {
             type: DataTypes.STRING,
             allowNull: false
         }
