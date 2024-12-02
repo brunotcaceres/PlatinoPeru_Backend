@@ -104,34 +104,7 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-router.post('/login', async (req, res) => {
-    try {
-      const { username, password } = req.body;
+
   
-      // Buscar usuario por correo electrónico o nombre de usuario
-      const user = await User.findOne({
-        where: {
-          [Op.or]: [{ email: username }, { nombreUsuario: username }]
-        }
-      });
-  
-      // Verificar si el usuario existe
-      if (!user) {
-        return res.status(400).json({ error: 'Usuario no encontrado.' });
-      }
-  
-      // Comparar la contraseña enviada con la almacenada en la base de datos
-      const isPasswordValid = await bcrypt.compare(password, user.password);
-  
-      if (!isPasswordValid) {
-        return res.status(400).json({ error: 'Contraseña incorrecta.' });
-      }
-  
-      // Respuesta exitosa
-      res.status(200).json({ message: 'Inicio de sesión exitoso', user });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  });
 
 export default router;
