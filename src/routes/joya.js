@@ -5,9 +5,10 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const joya = await Joya.create(req.body);
+    const joya = await Joya.create(req.body); 
     res.status(201).json(joya);
   } catch (error) {
+    console.error('Error al crear joya:', error);
     res.status(400).json({ error: error.message });
   }
 });
