@@ -21,6 +21,7 @@ async function verifyAndSyncConexion() {
 app.use('/admin/productos', joyaRoutes);
 app.use('/admin/usuarios', userRoutes);
 
+
 app.listen(PORT, () => {
     console.log(`Servidor conectado a puerto ${PORT}`);
     verifyAndSyncConexion();
