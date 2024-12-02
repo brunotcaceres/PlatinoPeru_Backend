@@ -29,4 +29,4 @@ const Joya = sequelize.define(
         timestamps: true
 });
 
-module.exports = Joya;
+export default Joya; 

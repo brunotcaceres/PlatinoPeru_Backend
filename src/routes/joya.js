@@ -1,5 +1,5 @@
-const express = require('express');
-const Joya = require('../models/Joya');
+import express from 'express';
+import Joya from '../models/Joyas.js';
 
 const router = express.Router();
 
@@ -47,4 +47,4 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
